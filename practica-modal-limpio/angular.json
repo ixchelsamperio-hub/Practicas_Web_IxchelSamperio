@@ -3,11 +3,11 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "analytics": "13b09dcf-0908-4e36-957b-c79bec3dcf4d"
+    "analytics": "69b430c8-f913-431f-aae8-d98d9e3e8f40"
   },
   "newProjectRoot": "projects",
   "projects": {
-    "practica-modal": {
+    "practica-js-modal": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -26,18 +26,12 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              
             ],
-
-"styles": [
-  "node_modules/bootstrap/dist/css/bootstrap.min.css",
-  "src/styles.css"
-],
-
-"scripts": [
-  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-],
-       
+             "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -72,10 +66,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "practica-modal:build:production"
+              "buildTarget": "practica-js-modal:build:production"
             },
             "development": {
-              "buildTarget": "practica-modal:build:development"
+              "buildTarget": "practica-js-modal:build:development"
             }
           },
           "defaultConfiguration": "development"
