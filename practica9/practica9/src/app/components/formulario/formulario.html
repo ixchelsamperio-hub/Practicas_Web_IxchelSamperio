@@ -3,22 +3,83 @@
 
   <form #formAlumno="ngForm" (ngSubmit)="guardarAlumno(formAlumno)">
 
+    <!-- NOMBRE -->
     <div class="mb-3">
       <label>Nombre</label>
-      <input type="text" class="form-control" name="nombre" ngModel required>
+      <input 
+        type="text" 
+        class="form-control"
+        name="nombre"
+        ngModel
+        required
+        minlength="3"
+        #nombre="ngModel">
+
+      <div class="text-danger" *ngIf="nombre.invalid && nombre.touched">
+        <small *ngIf="nombre.errors?.['required']">
+          El nombre es obligatorio
+        </small>
+        <small *ngIf="nombre.errors?.['minlength']">
+          Debe tener mínimo 3 caracteres
+        </small>
+      </div>
     </div>
 
+    <!-- EDAD -->
     <div class="mb-3">
       <label>Edad</label>
-      <input type="number" class="form-control" name="edad" ngModel required>
+      <input 
+        type="number"
+        class="form-control"
+        name="edad"
+        ngModel
+        required
+        min="18"
+        max="30"
+        #edad="ngModel">
+
+      <div class="text-danger" *ngIf="edad.invalid && edad.touched">
+        <small *ngIf="edad.errors?.['required']">
+          La edad es obligatoria
+        </small>
+        <small *ngIf="edad.errors?.['min']">
+          Edad mínima: 18 años
+        </small>
+        <small *ngIf="edad.errors?.['max']">
+          Edad máxima: 30 años
+        </small>
+      </div>
     </div>
 
+    <!-- CARRERA -->
     <div class="mb-3">
       <label>Carrera</label>
-      <input type="text" class="form-control" name="carrera" ngModel required>
+      <select 
+        class="form-control"
+        name="carrera"
+        ngModel
+        required
+        #carrera="ngModel">
+
+        <option value="">Seleccione una carrera</option>
+        <option>Ingeniería en TIID</option>
+        <option>Ingeniería Industrial</option>
+        <option>Terapia Fisica</option>
+        <option>Medico Cirujano</option>
+        <option>Ingenieria Mecatronica</option>
+      </select>
+
+      <div class="text-danger" *ngIf="carrera.invalid && carrera.touched">
+        <small>Debe seleccionar una carrera</small>
+      </div>
     </div>
 
-    <button class="btn btn-primary">Guardar</button>
+    <button 
+      class="btn btn-primary"
+      [disabled]="formAlumno.invalid">
+      Guardar
+    </button>
 
   </form>
 </div>
+

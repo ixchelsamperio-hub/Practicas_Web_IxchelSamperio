@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlumnosService } from '../../services/alumnos';
 
@@ -8,18 +8,19 @@ import { AlumnosService } from '../../services/alumnos';
   imports: [CommonModule],
   templateUrl: './tabla.html'
 })
-
-export class Tabla {
+export class Tabla implements OnInit {
 
   alumnos: any[] = [];
 
   constructor(private servicio: AlumnosService) {}
 
-  ngOnInit() {
-    this.servicio.obtenerAlumnos().subscribe((data: any) => {
-      console.log(data);
+  ngOnInit(): void {
+    this.obtenerAlumnos();
+  }
+
+  obtenerAlumnos(): void {
+    this.servicio.obtenerAlumnos().subscribe(data => {
       this.alumnos = data;
     });
   }
 }
-

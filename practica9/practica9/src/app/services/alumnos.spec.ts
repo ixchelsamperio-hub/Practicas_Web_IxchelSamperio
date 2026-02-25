@@ -1,16 +1,21 @@
-import { TestBed } from '@angular/core/testing';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-import { Alumnos } from './alumnos';
+@Injectable({
+  providedIn: 'root'
+})
+export class AlumnosService {
 
-describe('Alumnos', () => {
-  let service: Alumnos;
+  private apiUrl = 'http://127.0.0.1:5000/alumnos';
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(Alumnos);
-  });
+  constructor(private http: HttpClient) { }
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+  obtenerAlumnos(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
+  agregarAlumno(alumno: any): Observable<any> {
+    return this.http.post(this.apiUrl, alumno);
+  }
+}
